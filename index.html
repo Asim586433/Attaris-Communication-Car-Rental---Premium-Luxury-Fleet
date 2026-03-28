@@ -186,31 +186,69 @@
             color: var(--primary-maroon);
         }
 
-        /* Hero Section */
+        /* Hero Section with Animated Banner */
         .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
             padding: 6rem 5% 4rem;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
             position: relative;
             overflow: hidden;
         }
 
-        .hero::before {
-            content: '';
+        /* Full Width Animated Banner */
+        .animated-banner {
             position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(212,175,55,0.1)" stroke-width="2"/></svg>');
-            background-size: 50px 50px;
-            opacity: 0.5;
+            z-index: 0;
+        }
+
+        .banner-slides {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .banner-slide-item {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            animation: bannerZoom 20s ease-in-out infinite;
+        }
+
+        .banner-slide-item.active {
+            opacity: 1;
+        }
+
+        @keyframes bannerZoom {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .banner-overlay-light {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.7) 0%, rgba(22, 33, 62, 0.5) 100%);
+            z-index: 1;
         }
 
         .hero-content {
-            max-width: 50%;
+            max-width: 55%;
             position: relative;
-            z-index: 3;
+            z-index: 2;
+            color: white;
         }
 
         .hero-badge {
@@ -226,12 +264,12 @@
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 3.8rem;
             font-weight: 800;
             line-height: 1.2;
-            color: white;
             margin-bottom: 1.5rem;
             font-family: 'Montserrat', sans-serif;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
         .hero h1 span {
@@ -240,8 +278,10 @@
 
         .hero p {
             font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.9);
             margin-bottom: 2rem;
+            line-height: 1.8;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
         }
 
         /* Booking Section */
@@ -724,15 +764,25 @@
 
     <!-- Home Page -->
     <div id="home-page">
-        <!-- Hero Section -->
+        <!-- Hero Section with Full Width Animated Banner -->
         <section class="hero">
+            <div class="animated-banner">
+                <div class="banner-slides" id="bannerSlides">
+                    <div class="banner-slide-item" style="background-image: url('https://images.unsplash.com/photo-1626668893638-6e8e2b6c2d8a?w=1600&h=900&fit=crop')"></div>
+                    <div class="banner-slide-item" style="background-image: url('https://images.unsplash.com/photo-1617788138017-80ad40651399?w=1600&h=900&fit=crop')"></div>
+                    <div class="banner-slide-item" style="background-image: url('https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=1600&h=900&fit=crop')"></div>
+                    <div class="banner-slide-item" style="background-image: url('https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=1600&h=900&fit=crop')"></div>
+                </div>
+                <div class="banner-overlay-light"></div>
+            </div>
+            
             <div class="hero-content">
                 <div class="hero-badge">
                     <i class="fas fa-star"></i> Premium Car Rental Services
                 </div>
                 <h1>Experience Luxury with <span>Attaris Communication</span> Car Rental</h1>
                 <p>Where communication meets mobility. Experience seamless booking, professional service, and a fleet of premium vehicles for every occasion.</p>
-                <button class="btn-outline" style="background: white; border: none;" onclick="document.getElementById('booking').scrollIntoView({behavior: 'smooth'})">
+                <button class="btn-outline" style="background: white; border: none; color: var(--primary-maroon);" onclick="document.getElementById('booking').scrollIntoView({behavior: 'smooth'})">
                     Book Your Ride →
                 </button>
             </div>
@@ -980,7 +1030,7 @@
     </div>
 
     <script>
-        // Vehicle Data
+        // Vehicle Data with Working Images
         const vehicles = [
             { id: 1, name: "Mercedes-Benz S-Class", year: "2024", seats: 5, transmission: "Automatic", price: 189, image: "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=500&h=300&fit=crop" },
             { id: 2, name: "BMW 7 Series", year: "2024", seats: 5, transmission: "Automatic", price: 179, image: "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=500&h=300&fit=crop" },
@@ -996,6 +1046,20 @@
         ];
 
         let selectedVehicle = null;
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.banner-slide-item');
+
+        // Banner Slideshow with Auto Rotation
+        function startBannerSlideshow() {
+            if (slides.length === 0) return;
+            slides[0].classList.add('active');
+            
+            setInterval(() => {
+                slides[currentSlide].classList.remove('active');
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides[currentSlide].classList.add('active');
+            }, 5000);
+        }
 
         function renderFleet() {
             const grid = document.getElementById('fleet-grid');
@@ -1203,6 +1267,7 @@
         renderFleet();
         setDefaultDates();
         displayBookings();
+        startBannerSlideshow();
 
         window.showPage = showPage;
         window.goToStep1 = goToStep1;
