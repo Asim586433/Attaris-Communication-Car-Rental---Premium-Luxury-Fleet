@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attaris Communication Car Rental | Premium Luxury Fleet</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gold: #D4AF37;
+            --primary-gold-dark: #B4941C;
+            --primary-maroon: #800020;
+            --primary-maroon-dark: #5A0016;
+            --accent-teal: #008080;
+            --accent-teal-dark: #006666;
+            --dark-bg: #1a1a2e;
+            --light-bg: #f9f9f9;
+            --card-bg: #ffffff;
+            --text-dark: #1e1e2a;
+            --text-gray: #4a5568;
+            --text-light: #718096;
+            --success-green: #10b981;
+            --border-color: #e2e8f0;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --gold-gradient: linear-gradient(135deg, #D4AF37 0%, #F5E7B2 50%, #D4AF37 100%);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--light-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 0.8rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* Custom AI-Generated Logo */
+        .attaris-logo {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-gold), var(--primary-maroon));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            animation: logoGlow 2s ease-in-out infinite;
+        }
+
+        .attaris-logo::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(135deg, var(--primary-gold), var(--accent-teal));
+            border-radius: 14px;
+            z-index: -1;
+            opacity: 0.5;
+            filter: blur(8px);
+        }
+
+        .attaris-logo i {
+            font-size: 1.8rem;
+            color: white;
+            animation: logoSpin 8s linear infinite;
+        }
+
+        @keyframes logoGlow {
+            0%, 100% { box-shadow: 0 0 5px var(--primary-gold); }
+            50% { box-shadow: 0 0 20px var(--primary-gold); }
+        }
+
+        @keyframes logoSpin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-main {
+            font-size: 1.2rem;
+            font-weight: 800;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-main .attaris {
+            color: var(--primary-maroon);
+        }
+
+        .logo-main .communication {
+            color: var(--primary-gold);
+        }
+
+        .logo-main .car {
+            color: var(--accent-teal);
+        }
+
+        .logo-tag {
+            font-size: 0.65rem;
+            color: var(--text-gray);
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-gray);
+            font-weight: 500;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-gold);
+        }
+
+        .btn-primary {
+            background: var(--gold-gradient);
+            color: var(--primary-maroon);
+            border: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary-gold);
+            color: var(--primary-gold);
+            padding: 0.6rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-gold);
+            color: var(--primary-maroon);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 6rem 5% 4rem;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(212,175,55,0.1)" stroke-width="2"/></svg>');
+            background-size: 50px 50px;
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            max-width: 50%;
+            position: relative;
+            z-index: 3;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            color: var(--primary-gold);
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            color: white;
+            margin-bottom: 1.5rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .hero h1 span {
+            color: var(--primary-gold);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+        }
+
+        /* Booking Section */
+        .booking-section {
+            position: relative;
+            margin-top: -80px;
+            padding: 0 5%;
+            z-index: 20;
+        }
+
+        .booking-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .booking-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 35px;
+            height: 35px;
+            background: var(--border-color);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--text-gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .step.active .step-number {
+            background: var(--primary-gold);
+            color: var(--primary-maroon);
+        }
+
+        .step-label {
+            font-size: 0.75rem;
+            color: var(--text-gray);
+        }
+
+        .step.active .step-label {
+            color: var(--primary-gold);
+            font-weight: 600;
+        }
+
+        .booking-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            align-items: end;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-gold);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+
+        /* Fleet Section */
+        .fleet-section {
+            padding: 5rem 5%;
+            background: var(--light-bg);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+
+        .section-subtitle {
+            color: var(--primary-gold);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .fleet-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .fleet-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .fleet-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gold-gradient);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .fleet-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .fleet-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .fleet-image {
+            height: 220px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .fleet-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--primary-gold);
+            color: var(--primary-maroon);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+
+        .fleet-info {
+            padding: 1.5rem;
+        }
+
+        .fleet-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--primary-maroon);
+        }
+
+        .fleet-specs {
+            display: flex;
+            gap: 1rem;
+            margin: 1rem 0;
+            color: var(--text-gray);
+            font-size: 0.85rem;
+        }
+
+        .fleet-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-teal);
+            margin: 1rem 0;
+        }
+
+        .btn-book {
+            width: 100%;
+            padding: 0.75rem;
+            background: var(--gold-gradient);
+            color: var(--primary-maroon);
+            border: none;
+            border-radius: 30px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-book:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Stats Section */
+        .stats-section {
+            padding: 4rem 5%;
+            background: linear-gradient(135deg, var(--primary-maroon), var(--primary-maroon-dark));
+            color: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 5rem 5%;
+            background: white;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 20px;
+            transition: all 0.3s;
+            background: var(--light-bg);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--gold-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+
+        .feature-icon i {
+            font-size: 2rem;
+            color: var(--primary-maroon);
+        }
+
+        /* Testimonials */
+        .testimonials-section {
+            padding: 5rem 5%;
+            background: linear-gradient(135deg, var(--accent-teal), var(--accent-teal-dark));
+            color: white;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+        }
+
+        /* Bookings Page */
+        .bookings-page {
+            display: none;
+            padding: 8rem 5% 4rem;
+            min-height: 100vh;
+            background: var(--light-bg);
+        }
+
+        .bookings-page.active {
+            display: block;
+        }
+
+        .bookings-list {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .booking-item {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--primary-gold);
+        }
+
+        .booking-status {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: var(--success-green);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.75rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 5rem 5%;
+            text-align: center;
+            background: var(--light-bg);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark-bg);
+            color: white;
+            padding: 4rem 5% 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-col h4 {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            color: var(--primary-gold);
+        }
+
+        .footer-col p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 3rem;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 500px;
+            width: 90%;
+        }
+
+        .success-message {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--success-green);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            transform: translateX(400px);
+            transition: transform 0.3s;
+            z-index: 2000;
+        }
+
+        .success-message.show {
+            transform: translateX(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero-content {
+                max-width: 100%;
+                text-align: center;
+            }
+            .nav-links {
+                display: none;
+            }
+            .booking-grid {
+                grid-template-columns: 1fr;
+            }
+            .booking-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="logo-container">
+            <div class="attaris-logo">
+                <i class="fas fa-comments"></i>
+            </div>
+            <div class="logo-text">
+                <div class="logo-main">
+                    <span class="attaris">ATTARIS</span> 
+                    <span class="communication">COMMUNICATION</span><br>
+                    <span class="car">CAR RENTAL</span>
+                </div>
+                <div class="logo-tag">Premium Mobility Solutions Since 2024</div>
+            </div>
+        </div>
+        <div class="nav-links">
+            <a onclick="showPage('home')">Home</a>
+            <a onclick="showPage('fleet')">Our Fleet</a>
+            <a onclick="showPage('bookings')">My Bookings</a>
+            <a onclick="showPage('features')">Services</a>
+            <button class="btn-primary" onclick="openSignInModal()">Sign In</button>
+        </div>
+    </nav>
+
+    <!-- Home Page -->
+    <div id="home-page">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-star"></i> Premium Car Rental Services
+                </div>
+                <h1>Experience Luxury with <span>Attaris Communication</span> Car Rental</h1>
+                <p>Where communication meets mobility. Experience seamless booking, professional service, and a fleet of premium vehicles for every occasion.</p>
+                <button class="btn-outline" style="background: white; border: none;" onclick="document.getElementById('booking').scrollIntoView({behavior: 'smooth'})">
+                    Book Your Ride →
+                </button>
+            </div>
+        </section>
+
+        <!-- Booking Section -->
+        <div class="booking-section" id="booking">
+            <div class="booking-card">
+                <div class="booking-steps">
+                    <div class="step active" id="step1">
+                        <div class="step-number">1</div>
+                        <div class="step-label">Select Details</div>
+                    </div>
+                    <div class="step" id="step2">
+                        <div class="step-number">2</div>
+                        <div class="step-label">Choose Vehicle</div>
+                    </div>
+                    <div class="step" id="step3">
+                        <div class="step-number">3</div>
+                        <div class="step-label">Confirm Booking</div>
+                    </div>
+                </div>
+                
+                <div id="step1-content">
+                    <div class="booking-grid">
+                        <div class="form-group">
+                            <label>📍 Pickup Location</label>
+                            <select id="location">
+                                <option>Downtown - Business District</option>
+                                <option>International Airport</option>
+                                <option>City Center - Main Office</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>📅 Pickup Date</label>
+                            <input type="date" id="pickup-date">
+                        </div>
+                        <div class="form-group">
+                            <label>📅 Return Date</label>
+                            <input type="date" id="return-date">
+                        </div>
+                        <div class="form-group">
+                            <button class="btn-primary" style="width: 100%;" onclick="goToStep2()">Continue →</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="step2-content" class="ride-selection" style="display: none;">
+                    <h3 style="margin-bottom: 1rem;">Choose Your Vehicle</h3>
+                    <div class="ride-grid" id="ride-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;"></div>
+                    <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                        <button class="btn-outline" onclick="goToStep1()">← Back</button>
+                        <button class="btn-primary" onclick="goToStep3()" id="continue-to-checkout" disabled>Continue →</button>
+                    </div>
+                </div>
+                
+                <div id="step3-content" class="ride-selection" style="display: none;">
+                    <h3 style="margin-bottom: 1rem;">Complete Your Booking</h3>
+                    <div id="checkout-summary" style="background: var(--light-bg); padding: 1rem; border-radius: 10px; margin-bottom: 1.5rem;"></div>
+                    <div class="booking-grid">
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" id="checkout-name" placeholder="Enter your full name">
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" id="checkout-email" placeholder="your@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="tel" id="checkout-phone" placeholder="+1 234 567 890">
+                        </div>
+                        <div class="form-group">
+                            <label>Driver's License</label>
+                            <input type="text" id="checkout-license" placeholder="License number">
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+                        <button class="btn-outline" onclick="goToStep2()">← Back</button>
+                        <button class="btn-primary" onclick="completeBooking()">Confirm Booking →</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fleet Section -->
+        <div class="fleet-section" id="fleet-section">
+            <div class="section-header">
+                <div class="section-subtitle">Our Premium Collection</div>
+                <h2 class="section-title">Choose Your Perfect Ride</h2>
+                <p>Experience luxury, comfort, and performance with our hand-picked fleet</p>
+            </div>
+            <div class="fleet-grid" id="fleet-grid"></div>
+        </div>
+
+        <!-- Stats Section -->
+        <section class="stats-section">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Premium Vehicles</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">10,000+</div>
+                    <div class="stat-label">Happy Clients</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Concierge Support</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Locations</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Fleet Page -->
+    <div id="fleet-page" class="fleet-section" style="display: none;">
+        <div class="section-header">
+            <div class="section-subtitle">Complete Collection</div>
+            <h2 class="section-title">All Available Vehicles</h2>
+        </div>
+        <div class="fleet-grid" id="full-fleet-grid"></div>
+    </div>
+
+    <!-- Bookings Page -->
+    <div id="bookings-page" class="bookings-page">
+        <div class="section-header">
+            <div class="section-subtitle">Your Journey History</div>
+            <h2 class="section-title">My Bookings</h2>
+        </div>
+        <div class="bookings-list" id="bookings-list"></div>
+    </div>
+
+    <!-- Features Page -->
+    <div id="features-page" class="features-section" style="display: none;">
+        <div class="section-header">
+            <div class="section-subtitle">Why Choose Us</div>
+            <h2 class="section-title">Premium Services</h2>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-headset"></i></div>
+                <h3>24/7 Concierge</h3>
+                <p>Round-the-clock dedicated support for all your needs</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                <h3>Full Insurance</h3>
+                <p>Comprehensive coverage for complete peace of mind</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-clock"></i></div>
+                <h3>Instant Booking</h3>
+                <p>Quick and seamless reservation process</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-car"></i></div>
+                <h3>Free Delivery</h3>
+                <p>Complimentary vehicle delivery to your location</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Testimonials -->
+    <section class="testimonials-section">
+        <div class="section-header" style="color: white;">
+            <div class="section-subtitle" style="color: rgba(255,255,255,0.8);">Client Reviews</div>
+            <h2 class="section-title" style="color: white;">What Our Clients Say</h2>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <p>"Exceptional service! The team at Attaris Communication made my business trip seamless and comfortable."</p>
+                <p class="testimonial-author">- David Thompson, CEO</p>
+            </div>
+            <div class="testimonial-card">
+                <p>"Professional, reliable, and the vehicles are immaculate. Highly recommended for corporate needs."</p>
+                <p class="testimonial-author">- Maria Garcia, Director</p>
+            </div>
+            <div class="testimonial-card">
+                <p>"The booking process was smooth and the customer service is outstanding. Will definitely use again!"</p>
+                <p class="testimonial-author">- James Wilson, Entrepreneur</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <h2>Ready to Experience Excellence?</h2>
+        <p>Join thousands of satisfied clients who trust Attaris Communication for their mobility needs</p>
+        <button class="btn-primary" onclick="openSignInModal()">Get Started Today</button>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>ATTARIS COMMUNICATION</h4>
+                <p>Premium car rental solutions with exceptional service and communication.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <p>About Us<br>Our Fleet<br>Corporate Services<br>Contact</p>
+            </div>
+            <div class="footer-col">
+                <h4>Support</h4>
+                <p>Help Center<br>Terms of Service<br>Privacy Policy<br>FAQs</p>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p>📞 1-800-ATTARIS<br>✉️ hello@attaris.com<br>📍 123 Business Avenue, NYC</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Attaris Communication Car Rental. All rights reserved. Excellence in Motion.</p>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <div class="modal" id="signin-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Welcome to Attaris</h2>
+                <button class="close-modal" onclick="closeSignInModal()">&times;</button>
+            </div>
+            <form id="signin-form">
+                <div class="form-group" style="margin-bottom: 1rem;">
+                    <label>Email Address</label>
+                    <input type="email" id="signin-email" required>
+                </div>
+                <div class="form-group" style="margin-bottom: 1rem;">
+                    <label>Password</label>
+                    <input type="password" id="signin-password" required>
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%;">Sign In</button>
+                <p style="text-align: center; margin-top: 1rem;">Demo: Use any email</p>
+            </form>
+        </div>
+    </div>
+
+    <div class="success-message" id="success-message">
+        <i class="fas fa-check-circle"></i> Action completed!
+    </div>
+
+    <script>
+        // Vehicle Data
+        const vehicles = [
+            { id: 1, name: "Mercedes-Benz S-Class", year: "2024", seats: 5, transmission: "Automatic", price: 189, image: "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=500&h=300&fit=crop" },
+            { id: 2, name: "BMW 7 Series", year: "2024", seats: 5, transmission: "Automatic", price: 179, image: "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=500&h=300&fit=crop" },
+            { id: 3, name: "Audi A8", year: "2024", seats: 5, transmission: "Automatic", price: 169, image: "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=500&h=300&fit=crop" },
+            { id: 4, name: "Porsche Cayenne", year: "2024", seats: 5, transmission: "Automatic", price: 199, image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=500&h=300&fit=crop" },
+            { id: 5, name: "Range Rover Velar", year: "2024", seats: 5, transmission: "Automatic", price: 159, image: "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=500&h=300&fit=crop" },
+            { id: 6, name: "Lexus LS", year: "2024", seats: 5, transmission: "Automatic", price: 149, image: "https://images.unsplash.com/photo-1556189250-72ba954cfc2b?w=500&h=300&fit=crop" }
+        ];
+
+        let bookings = [
+            { id: 'ATT001', carName: 'Mercedes-Benz S-Class', customerName: 'John Smith', pickupDate: '2024-12-20', returnDate: '2024-12-25', totalPrice: 945, status: 'Confirmed', image: 'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=100&h=100&fit=crop' },
+            { id: 'ATT002', carName: 'BMW 7 Series', customerName: 'Emily Johnson', pickupDate: '2024-12-15', returnDate: '2024-12-18', totalPrice: 537, status: 'Completed', image: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=100&h=100&fit=crop' }
+        ];
+
+        let selectedVehicle = null;
+
+        function renderFleet() {
+            const grid = document.getElementById('fleet-grid');
+            if (grid) {
+                grid.innerHTML = vehicles.map(car => `
+                    <div class="fleet-card" onclick="directBook(${car.id})">
+                        <div class="fleet-image" style="background-image: url('${car.image}')">
+                            <div class="fleet-badge">New ${car.year}</div>
+                        </div>
+                        <div class="fleet-info">
+                            <div class="fleet-name">${car.name}</div>
+                            <div class="fleet-specs">
+                                <span><i class="fas fa-users"></i> ${car.seats} seats</span>
+                                <span><i class="fas fa-cogs"></i> ${car.transmission}</span>
+                            </div>
+                            <div class="fleet-price">$${car.price}/day</div>
+                            <button class="btn-book" onclick="event.stopPropagation(); directBook(${car.id})">Book Now →</button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+            
+            const fullGrid = document.getElementById('full-fleet-grid');
+            if (fullGrid) {
+                fullGrid.innerHTML = vehicles.map(car => `
+                    <div class="fleet-card" onclick="directBook(${car.id})">
+                        <div class="fleet-image" style="background-image: url('${car.image}')">
+                            <div class="fleet-badge">New ${car.year}</div>
+                        </div>
+                        <div class="fleet-info">
+                            <div class="fleet-name">${car.name}</div>
+                            <div class="fleet-specs">
+                                <span><i class="fas fa-users"></i> ${car.seats} seats</span>
+                                <span><i class="fas fa-cogs"></i> ${car.transmission}</span>
+                            </div>
+                            <div class="fleet-price">$${car.price}/day</div>
+                            <button class="btn-book" onclick="event.stopPropagation(); directBook(${car.id})">Book Now →</button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+            
+            const rideGrid = document.getElementById('ride-grid');
+            if (rideGrid) {
+                rideGrid.innerHTML = vehicles.map(car => `
+                    <div class="ride-card" onclick="selectVehicle(${car.id})" data-id="${car.id}" style="background: var(--light-bg); border-radius: 15px; padding: 1rem; cursor: pointer; border: 2px solid transparent;">
+                        <div style="height: 150px; background-image: url('${car.image}'); background-size: cover; background-position: center; border-radius: 10px; margin-bottom: 1rem;"></div>
+                        <div style="font-weight: 700;">${car.name}</div>
+                        <div style="color: var(--primary-gold); font-weight: 600;">$${car.price}/day</div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function selectVehicle(carId) {
+            selectedVehicle = vehicles.find(c => c.id === carId);
+            document.querySelectorAll('.ride-card').forEach(card => card.style.borderColor = 'transparent');
+            const selectedCard = document.querySelector(`.ride-card[data-id="${carId}"]`);
+            if (selectedCard) selectedCard.style.borderColor = 'var(--primary-gold)';
+            document.getElementById('continue-to-checkout').disabled = false;
+        }
+
+        function directBook(carId) {
+            selectedVehicle = vehicles.find(c => c.id === carId);
+            const pickupDate = document.getElementById('pickup-date').value;
+            const returnDate = document.getElementById('return-date').value;
+            if (!pickupDate || !returnDate) {
+                const today = new Date();
+                document.getElementById('pickup-date').valueAsDate = today;
+                const returnDateObj = new Date(today);
+                returnDateObj.setDate(today.getDate() + 3);
+                document.getElementById('return-date').valueAsDate = returnDateObj;
+            }
+            document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
+            goToStep2();
+        }
+
+        function goToStep1() {
+            document.getElementById('step1-content').style.display = 'block';
+            document.getElementById('step2-content').style.display = 'none';
+            document.getElementById('step3-content').style.display = 'none';
+            document.getElementById('step1').classList.add('active');
+            document.getElementById('step2').classList.remove('active');
+            document.getElementById('step3').classList.remove('active');
+        }
+
+        function goToStep2() {
+            const pickupDate = document.getElementById('pickup-date').value;
+            const returnDate = document.getElementById('return-date').value;
+            if (!pickupDate || !returnDate) {
+                showMessage('Please select pickup and return dates');
+                return;
+            }
+            document.getElementById('step1-content').style.display = 'none';
+            document.getElementById('step2-content').style.display = 'block';
+            document.getElementById('step3-content').style.display = 'none';
+            document.getElementById('step1').classList.remove('active');
+            document.getElementById('step2').classList.add('active');
+            document.getElementById('step3').classList.remove('active');
+        }
+
+        function goToStep3() {
+            if (!selectedVehicle) {
+                showMessage('Please select a vehicle');
+                return;
+            }
+            const pickupDate = document.getElementById('pickup-date').value;
+            const returnDate = document.getElementById('return-date').value;
+            const days = Math.ceil((new Date(returnDate) - new Date(pickupDate)) / (1000 * 60 * 60 * 24));
+            const totalPrice = selectedVehicle.price * days;
+            document.getElementById('checkout-summary').innerHTML = `
+                <h4>Booking Summary</h4>
+                <p><strong>Vehicle:</strong> ${selectedVehicle.name}</p>
+                <p><strong>Location:</strong> ${document.getElementById('location').value}</p>
+                <p><strong>Dates:</strong> ${pickupDate} to ${returnDate} (${days} days)</p>
+                <p><strong>Total:</strong> <span style="color: var(--primary-gold); font-size: 1.2rem;">$${totalPrice}</span></p>
+            `;
+            document.getElementById('step1-content').style.display = 'none';
+            document.getElementById('step2-content').style.display = 'none';
+            document.getElementById('step3-content').style.display = 'block';
+            document.getElementById('step1').classList.remove('active');
+            document.getElementById('step2').classList.remove('active');
+            document.getElementById('step3').classList.add('active');
+        }
+
+        function completeBooking() {
+            const name = document.getElementById('checkout-name').value;
+            const email = document.getElementById('checkout-email').value;
+            if (!name || !email) {
+                showMessage('Please fill in all fields');
+                return;
+            }
+            const pickupDate = document.getElementById('pickup-date').value;
+            const returnDate = document.getElementById('return-date').value;
+            const days = Math.ceil((new Date(returnDate) - new Date(pickupDate)) / (1000 * 60 * 60 * 24));
+            const newBooking = {
+                id: 'ATT' + Math.floor(Math.random() * 1000),
+                carName: selectedVehicle.name,
+                customerName: name,
+                pickupDate: pickupDate,
+                returnDate: returnDate,
+                totalPrice: selectedVehicle.price * days,
+                status: 'Confirmed',
+                image: selectedVehicle.image
+            };
+            bookings.unshift(newBooking);
+            showMessage(`Thank you ${name}! Your booking is confirmed. ID: ${newBooking.id}`);
+            goToStep1();
+            document.getElementById('checkout-name').value = '';
+            document.getElementById('checkout-email').value = '';
+            document.getElementById('checkout-phone').value = '';
+            document.getElementById('checkout-license').value = '';
+            selectedVehicle = null;
+        }
+
+        function displayBookings() {
+            const container = document.getElementById('bookings-list');
+            if (container) {
+                container.innerHTML = bookings.map(b => `
+                    <div class="booking-item">
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <div style="width: 60px; height: 60px; background-image: url('${b.image}'); background-size: cover; border-radius: 10px;"></div>
+                            <div><strong>${b.carName}</strong><br><small>ID: ${b.id}</small></div>
+                        </div>
+                        <div>📅 ${b.pickupDate} to ${b.returnDate}<br>💰 $${b.totalPrice}</div>
+                        <span class="booking-status">${b.status}</span>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function showPage(page) {
+            document.getElementById('home-page').style.display = page === 'home' ? 'block' : 'none';
+            document.getElementById('fleet-page').style.display = page === 'fleet' ? 'block' : 'none';
+            document.getElementById('bookings-page').style.display = page === 'bookings' ? 'flex' : 'none';
+            document.getElementById('features-page').style.display = page === 'features' ? 'block' : 'none';
+            if (page === 'bookings') displayBookings();
+            window.scrollTo({ top: 0 });
+        }
+
+        function showMessage(msg) {
+            const msgDiv = document.getElementById('success-message');
+            msgDiv.innerHTML = `<i class="fas fa-check-circle"></i> ${msg}`;
+            msgDiv.classList.add('show');
+            setTimeout(() => msgDiv.classList.remove('show'), 3000);
+        }
+
+        function openSignInModal() { document.getElementById('signin-modal').classList.add('active'); }
+        function closeSignInModal() { document.getElementById('signin-modal').classList.remove('active'); }
+
+        document.getElementById('signin-form')?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            showMessage('Welcome to Attaris Communication!');
+            closeSignInModal();
+        });
+
+        function setDefaultDates() {
+            const today = new Date();
+            document.getElementById('pickup-date').valueAsDate = today;
+            const returnDate = new Date(today);
+            returnDate.setDate(today.getDate() + 3);
+            document.getElementById('return-date').valueAsDate = returnDate;
+        }
+
+        renderFleet();
+        setDefaultDates();
+        displayBookings();
+
+        window.showPage = showPage;
+        window.goToStep1 = goToStep1;
+        window.goToStep2 = goToStep2;
+        window.goToStep3 = goToStep3;
+        window.selectVehicle = selectVehicle;
+        window.completeBooking = completeBooking;
+        window.directBook = directBook;
+        window.openSignInModal = openSignInModal;
+        window.closeSignInModal = closeSignInModal;
+    </script>
+</body>
+</html>
